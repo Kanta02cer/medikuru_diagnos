@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>売上直結ブランディング診断</title>
+  <style>
+    :root {
+      --cyan: #0f8aa8;
+      --pink: #e63888;
+      --cyan-light: #ecfbff;
+      --pink-light: #fff0f7;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --gray-900: #0f172a;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --gradient: linear-gradient(90deg, var(--cyan), var(--pink));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+      background: #f7f7f7;
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 16px 56px;
+    }
+
+    .sheet {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-wrap {
+      background: var(--gradient);
+      padding: 1px;
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(15, 138, 168, 0.04), rgba(230, 56, 136, 0.03)),
+        #fff;
+      padding: 36px 28px;
+      border-top-left-radius: 31px;
+      border-top-right-radius: 31px;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--gray-100);
+      font-weight: 700;
+      color: var(--gray-700);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow {
+      font-size: clamp(34px, 5vw, 66px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin: 0;
+    }
+
+    .eyebrow .num {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .title {
+      margin: 10px 0 8px;
+      font-size: clamp(38px, 6vw, 74px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 900px;
+      color: var(--gray-500);
+      font-size: clamp(16px, 2vw, 22px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: var(--gradient);
+      color: #fff;
+      font-weight: 800;
+      font-size: 18px;
+      box-shadow: 0 10px 20px rgba(230, 56, 136, 0.18);
+      white-space: nowrap;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 28px;
+      padding: 28px;
+    }
+
+    .section-card {
+      border: 1px solid var(--gray-200);
+      background: var(--gray-50);
+      border-radius: var(--radius-xl);
+      padding: 20px;
+    }
+
+    .intro-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 12px;
+      color: var(--gray-700);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .progress-mini {
+      min-width: 140px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 16px 18px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .progress-mini small {
+      display: block;
+      color: var(--gray-500);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .progress-mini strong {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .progress-mini span {
+      font-size: 18px;
+      color: var(--gray-300);
+      font-weight: 800;
+    }
+
+    .questions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .question-card {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .question-head {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .q-number {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: #0b7a96;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .question-text {
+      margin: 2px 0 0;
+      font-size: 21px;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+
+    .score-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .score-btn {
+      flex: 1;
+      border-radius: 18px;
+      border: 1px solid var(--gray-200);
+      background: #fff;
+      padding: 12px 10px;
+      font-size: 22px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.2s ease;
+      color: var(--gray-500);
+    }
+
+    .score-btn:hover {
+      border-color: var(--gray-300);
+      transform: translateY(-1px);
+    }
+
+    .score-btn.active-0 {
+      border-color: var(--cyan);
+      background: var(--cyan-light);
+      color: var(--cyan);
+    }
+
+    .score-btn.active-5 {
+      border-color: #64748b;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .score-btn.active-10 {
+      border-color: var(--pink);
+      background: var(--pink-light);
+      color: var(--pink);
+    }
+
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .score-panel-wrap {
+      padding: 1px;
+      border-radius: 28px;
+      background: var(--gradient);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .score-panel {
+      border-radius: 27px;
+      background: #fff;
+      padding: 22px;
+    }
+
+    .score-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+    }
+
+    .score-label {
+      margin: 0;
+      color: var(--gray-500);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .score-value {
+      margin-top: 4px;
+      font-size: 72px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+
+    .rank-box {
+      background: var(--gray-100);
+      padding: 12px 16px;
+      border-radius: 18px;
+      text-align: center;
+      min-width: 98px;
+    }
+
+    .rank-box small {
+      display: block;
+      color: var(--gray-500);
+      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .rank-box strong {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--pink);
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      background: var(--gray-100);
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0;
+      background: var(--gradient);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .bar-scale {
+      display: flex;
+      justify-content: space-between;
+      color: var(--gray-500);
+      font-size: 13px;
+      margin-top: 8px;
+      font-weight: 700;
+    }
+
+    .result-box {
+      margin-top: 18px;
+      background: var(--gray-50);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .result-box small {
+      color: var(--gray-500);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .result-title {
+      margin: 4px 0 8px;
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .result-text {
+      margin: 0;
+      color: var(--gray-700);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .rank-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .rank-item {
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 18px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .rank-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--gray-100);
+      color: #0b6d88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .rank-item strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .rank-item span {
+      display: block;
+      color: var(--gray-500);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+
+    .simple-card {
+      border: 1px solid var(--gray-200);
+      background: #fff;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .simple-card h2 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .weak-list {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .weak-item {
+      background: var(--gray-50);
+      border-radius: 18px;
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .weak-index {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #ffe4f0;
+      color: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .weak-item strong {
+      display: block;
+      font-size: 16px;
+    }
+
+    .weak-item span {
+      color: var(--gray-500);
+      font-size: 13px;
+    }
+
+    .cta-card {
+      border: 1px solid var(--gray-200);
+      background: var(--gray-900);
+      color: #fff;
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .cta-card h2 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .cta-card p {
+      color: #cbd5e1;
+      font-size: 15px;
+      line-height: 1.9;
+      margin: 10px 0 0;
+    }
+
+    .cta-buttons {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      padding: 15px 18px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 16px;
+      transition: 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(230, 56, 136, 0.18);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.94;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-bar {
+      border-top: 1px solid var(--gray-200);
+      background: var(--gray-50);
+      padding: 18px 28px;
+      display: flex;
+      gap: 14px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      color: var(--gray-500);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .confirm-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: var(--gray-200);
+      color: #94a3b8;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: not-allowed;
+      transition: 0.2s ease;
+    }
+
+    .confirm-btn.active {
+      background: var(--gray-900);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .confirm-btn.active:hover {
+      background: #111827;
+    }
+
+    .summary-panel {
+      margin-top: 20px;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: none;
+    }
+
+    .summary-panel.show {
+      display: block;
+    }
+
+    .summary-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .summary-head small {
+      display: block;
+      color: var(--gray-500);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .summary-head h3 {
+      margin: 4px 0 0;
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .summary-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-300);
+    }
+
+    .btn-outline:hover {
+      background: var(--gray-50);
+    }
+
+    .btn-dark {
+      background: var(--gray-900);
+      color: #fff;
+    }
+
+    .btn-dark:hover {
+      background: #111827;
+    }
+
+    .summary-box {
+      margin-top: 18px;
+      background: var(--gray-50);
+      border-radius: 24px;
+      padding: 20px;
+      color: var(--gray-700);
+      font-size: 16px;
+      line-height: 1.95;
+    }
+
+    @media (max-width: 1024px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 18px 10px 32px;
+      }
+
+      .hero,
+      .main,
+      .footer-bar {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero {
+        padding-top: 24px;
+        padding-bottom: 24px;
+      }
+
+      .questions,
+      .rank-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .question-text {
+        font-size: 18px;
+      }
+
+      .section-title {
+        font-size: 23px;
+      }
+
+      .score-value {
+        font-size: 56px;
+      }
+
+      .result-title {
+        font-size: 24px;
+      }
+
+      .summary-head h3 {
+        font-size: 30px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .container {
+        max-width: none;
+        padding: 0;
+      }
+
+      .sheet,
+      .summary-panel {
+        box-shadow: none;
+      }
+
+      .cta-card,
+      .footer-bar,
+      .summary-buttons {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sheet">
+      <div class="hero-wrap">
+        <section class="hero">
+          <div class="hero-top">
+            <div>
+              <div class="brand-tag">メディくる</div>
+              <p class="eyebrow"><span class="num">10問</span>でわかる</p>
+              <h1 class="title">売上直結ブランディング診断</h1>
+              <p class="subtitle">検索された後に信頼され、選ばれ、売上につながる状態かをセルフチェック</p>
+            </div>
+            <div class="badge">無料セルフチェック</div>
+          </div>
+        </section>
+      </div>
+
+      <main class="main">
+        <section>
+          <div class="section-card">
+            <div class="intro-row">
+              <div>
+                <h2 class="section-title">各設問を 0点 / 5点 / 10点 で採点してください</h2>
+                <div class="legend">
+                  <span class="legend-item"><span class="dot" style="background:#e63888"></span>10点 = 当てはまる</span>
+                  <span class="legend-item"><span class="dot" style="background:#94a3b8"></span>5点 = やや当てはまる</span>
+                  <span class="legend-item"><span class="dot" style="background:#0f8aa8"></span>0点 = 当てはまらない</span>
+                </div>
+              </div>
+              <div class="progress-mini">
+                <small>回答数</small>
+                <strong id="answeredCount">0</strong><span> / 10</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="questions" id="questions"></div>
+        </section>
+
+        <aside class="side">
+          <div class="score-panel-wrap">
+            <div class="score-panel">
+              <div class="score-header">
+                <div>
+                  <p class="score-label">合計点</p>
+                  <div class="score-value" id="totalScore">0</div>
+                </div>
+                <div class="rank-box">
+                  <small>ランク</small>
+                  <strong id="rankLetter">D</strong>
+                </div>
+              </div>
+
+              <div class="bar">
+                <div class="bar-fill" id="barFill"></div>
+              </div>
+              <div class="bar-scale">
+                <span>0点</span>
+                <span>100点</span>
+              </div>
+
+              <div class="result-box">
+                <small>診断結果</small>
+                <div class="result-title" id="rankLabel">検索信用に課題大</div>
+                <p class="result-text" id="summaryText">
+                  広告や営業を強める前に、検索結果と信頼設計の整備を優先した方が良い状態です。まずは不安払拭と第三者評価の見える化から進めるのがおすすめです。
+                </p>
+              </div>
+
+              <div class="rank-grid">
+                <div class="rank-item">
+                  <div class="rank-badge">A</div>
+                  <div><strong>80〜100点</strong><span>かなり強い</span></div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-badge">B</div>
+                  <div><strong>60〜79点</strong><span>改善余地あり</span></div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-badge">C</div>
+                  <div><strong>40〜59点</strong><span>機会損失の可能性</span></div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-badge">D</div>
+                  <div><strong>0〜39点</strong><span>検索信用に課題大</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <section class="simple-card">
+            <h2>重点改善ポイント</h2>
+            <div class="weak-list" id="weakList"></div>
+          </section>
+
+          <section class="cta-card">
+            <h2>次のアクション</h2>
+            <p>
+              診断結果をもとに、検索結果・第三者評価・公式サイト・導線設計のどこを優先して改善するべきかを整理できます。
+            </p>
+            <div class="cta-buttons">
+              <a class="btn btn-primary" href="#">無料相談を申し込む</a>
+              <a class="btn btn-secondary" href="#">診断結果レポートを受け取る</a>
+            </div>
+          </section>
+        </aside>
+      </main>
+
+      <div class="footer-bar">
+        <div class="footer-copy">重点改善ポイント：検索結果 / 第三者評価 / 公式サイト信頼設計 / 導線改善</div>
+        <button class="confirm-btn" id="confirmBtn" disabled>診断結果を確定</button>
+      </div>
+    </div>
+
+    <section class="summary-panel" id="summaryPanel">
+      <div class="summary-head">
+        <div>
+          <small>診断結果サマリー</small>
+          <h3 id="summaryHeadline">Dランク / 0点</h3>
+        </div>
+        <div class="summary-buttons">
+          <button class="btn btn-outline" id="printBtn">印刷する</button>
+          <button class="btn btn-dark" id="resetBtn">もう一度診断する</button>
+        </div>
+      </div>
+      <div class="summary-box" id="summaryBox"></div>
+    </section>
+  </div>
+
+  <script>
+    const questions = [
+      "会社名検索で公式サイト以外の好印象情報が表示される",
+      "会社名検索でニュース記事やメディア掲載が表示される",
+      "比較検討に役立つ第三者評価・評判記事がある",
+      "口コミやネガティブ情報に対する打ち返し情報がある",
+      "公式サイトに掲載実績・導入事例がある",
+      "公式サイトに代表情報・会社概要・信頼要素がある",
+      "FAQや不安払拭コンテンツが整っている",
+      "競合との違い・選ばれる理由が一言で伝わる",
+      "広告やSNSを見た後、検索しても世界観がつながる",
+      "問い合わせ・申込み導線がわかりやすい"
+    ];
+
+    const weakLabels = [
+      "検索結果の改善",
+      "ニュース・メディア掲載の強化",
+      "第三者評価・評判記事の整備",
+      "ネガティブ対策・打ち返し情報の整備",
+      "掲載実績・導入事例の見える化",
+      "代表情報・会社概要・信頼要素の強化",
+      "FAQ・不安払拭コンテンツの拡充",
+      "競合との差別化メッセージ整理",
+      "広告と検索後の世界観統一",
+      "問い合わせ導線の改善"
+    ];
+
+    const answers = Array(questions.length).fill(null);
+    const questionWrap = document.getElementById("questions");
+    const totalScoreEl = document.getElementById("totalScore");
+    const answeredCountEl = document.getElementById("answeredCount");
+    const rankLetterEl = document.getElementById("rankLetter");
+    const rankLabelEl = document.getElementById("rankLabel");
+    const summaryTextEl = document.getElementById("summaryText");
+    const weakListEl = document.getElementById("weakList");
+    const barFillEl = document.getElementById("barFill");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const summaryPanel = document.getElementById("summaryPanel");
+    const summaryHeadline = document.getElementById("summaryHeadline");
+    const summaryBox = document.getElementById("summaryBox");
+    const printBtn = document.getElementById("printBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    function getRank(score) {
+      if (score >= 80) return "A";
+      if (score >= 60) return "B";
+      if (score >= 40) return "C";
+      return "D";
+    }
+
+    function getRankLabel(score) {
+      if (score >= 80) return "かなり強い";
+      if (score >= 60) return "改善余地あり";
+      if (score >= 40) return "機会損失の可能性";
+      return "検索信用に課題大";
+    }
+
+    function getSummary(score) {
+      if (score >= 80) {
+        return "検索された後の信頼形成はかなり強い状態です。次は第三者評価の強化や広告連動の最適化で、売上効率をさらに高めていく段階です。";
+      }
+      if (score >= 60) {
+        return "基本的な信頼設計は整っていますが、比較検討で取りこぼしている可能性があります。第三者評価や公式サイト上の後押し要素を強化すると、さらに伸ばしやすい状態です。";
+      }
+      if (score >= 40) {
+        return "検索された後の信頼不足が、問い合わせ率や成約率に影響している可能性があります。検索結果・第三者評価・公式サイト設計の見直しが必要です。";
+      }
+      return "広告や営業を強める前に、検索結果と信頼設計の整備を優先した方が良い状態です。まずは不安払拭と第三者評価の見える化から進めるのがおすすめです。";
+    }
+
+    function getWeakPoints() {
+      return answers
+        .map((score, index) => ({ label: weakLabels[index], score: score ?? 0 }))
+        .sort((a, b) => a.score - b.score)
+        .slice(0, 3);
+    }
+
+    function renderWeakPoints() {
+      const items = getWeakPoints();
+      weakListEl.innerHTML = items
+        .map((item, index) => `
+          <div class="weak-item">
+            <div class="weak-index">${index + 1}</div>
+            <div>
+              <strong>${item.label}</strong>
+              <span>現在の自己評価: ${item.score}点</span>
+            </div>
+          </div>
+        `)
+        .join("");
+    }
+
+    function updateUI() {
+      const total = answers.reduce((sum, value) => sum + (value ?? 0), 0);
+      const answeredCount = answers.filter((value) => value !== null).length;
+      const rank = getRank(total);
+      const rankLabel = getRankLabel(total);
+      const summary = getSummary(total);
+      const isComplete = answeredCount === questions.length;
+
+      totalScoreEl.textContent = total;
+      answeredCountEl.textContent = answeredCount;
+      rankLetterEl.textContent = rank;
+      rankLabelEl.textContent = rankLabel;
+      summaryTextEl.textContent = summary;
+      summaryHeadline.textContent = `${rank}ランク / ${total}点`;
+      summaryBox.textContent = summary;
+      barFillEl.style.width = `${Math.min(total, 100)}%`;
+
+      confirmBtn.disabled = !isComplete;
+      confirmBtn.classList.toggle("active", isComplete);
+
+      renderWeakPoints();
+    }
+
+    function renderQuestions() {
+      questionWrap.innerHTML = questions
+        .map((question, index) => {
+          return `
+            <div class="question-card">
+              <div class="question-head">
+                <div class="q-number">${index + 1}</div>
+                <p class="question-text">${question}</p>
+              </div>
+              <div class="score-options">
+                ${[0, 5, 10]
+                  .map(
+                    (score) => `
+                    <button class="score-btn" data-index="${index}" data-score="${score}" type="button">${score}</button>
+                  `
+                  )
+                  .join("")}
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+
+      questionWrap.querySelectorAll(".score-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          const index = Number(button.dataset.index);
+          const score = Number(button.dataset.score);
+          answers[index] = score;
+
+          questionWrap
+            .querySelectorAll(`.score-btn[data-index="${index}"]`)
+            .forEach((btn) => {
+              btn.classList.remove("active-0", "active-5", "active-10");
+            });
+
+          button.classList.add(`active-${score}`);
+          updateUI();
+        });
+      });
+    }
+
+    confirmBtn.addEventListener("click", () => {
+      if (confirmBtn.disabled) return;
+      summaryPanel.classList.add("show");
+      summaryPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    printBtn.addEventListener("click", () => {
+      window.print();
+    });
+
+    resetBtn.addEventListener("click", () => {
+      for (let i = 0; i < answers.length; i += 1) {
+        answers[i] = null;
+      }
+      questionWrap.querySelectorAll(".score-btn").forEach((btn) => {
+        btn.classList.remove("active-0", "active-5", "active-10");
+      });
+      summaryPanel.classList.remove("show");
+      updateUI();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    renderQuestions();
+    updateUI();
+  </script>
+</body>
+</html>
